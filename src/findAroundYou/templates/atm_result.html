@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% for atm, details in atms.items %}
+<h1> {{ atm }} </h1>
+ <ul>
+ 	<li> {{ details.0 }}</li>
+ 	<li> {{details.1}} </li>
+ 	<li> {{details.2}} </li>
+	<li> {{details.3}} </li>
+
+ </ul>
+
+  <div id="map" class="col-lg-6" style="vertical-align:middle; width:75%; float:none; display: inline-block;">      
+      {% load easy_maps_tags %}
+      <!-- map with 600x600 dimensions -->
+      {% easy_map details.0  600 200  using "easy_maps/map.html" %}  
+      </div>
+{% endfor %}
+{% endblock %}
