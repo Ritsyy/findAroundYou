@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load staticfiles %}    
+{% load static %}    
     {% block form %}        
         <!-- For input address: -->
        <!--  <img class="img-responsive" src="{% static "assets/img/profile.png"%}" alt=""> -->
@@ -9,13 +9,17 @@
                 <div class="form-group">                                     
                     <div class="col-lg-6" style="vertical-align: middle;width: 75%;float: none;display: inline-block;">
                         <div class="input-group">
-                            <input type="text" name="location" class="form-control" placeholder="Enter Your Address...">
+                            <input type="text" name="location" id="address" class="form-control input-lg" onkeydown="if (event.keyCode == 13) document.getElementById('btnSearch').click()" placeholder="Enter Your Address">
+                   
                             <span class="input-group-btn">
-                                <button class="btn btn-warning" type="submit">Go!</button>
+                                <button id="btnSearch" class="btn btn-info btn-lg" type="submit" ><span class="glyphicon glyphicon-search"></span> Search</button>
                             </span>
                         </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->                    
                 </div>                                    
             </form>                                                             
     </div><!-- /.row for address input-->
+    
+<script type="text/javascript" src="/static/admin/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
 {% endblock %}    

@@ -18,9 +18,9 @@ def atm_map(request):
 
 	if request.method == 'POST':
 		loc = request.POST.get('location', '')
-		autocomplete = google_places.autocomplete(input
-			=loc)
-		print autocomplete
+		# autocomplete = google_places.autocomplete(input
+		# 	=loc)
+		# print autocomplete
 
 	query_result = google_places.nearby_search(
 		location=loc, keyword='atm',
