@@ -4,7 +4,7 @@
         <!-- For input address: -->
        <!--  <img class="img-responsive" src="{% static "assets/img/profile.png"%}" alt=""> -->
         <div class="row">                           
-            <form role="form" action="/atm_map" method="POST">
+            <form role="form" action="/atm_map" method="POST" onkeydown="if (event.keyCode == 13) document.getElementById('btnSearch').click()">
 				{% csrf_token %}
                 <div class="form-group">                                     
                     <div class="col-lg-6" style="vertical-align: middle;width: 75%;float: none;display: inline-block;">
