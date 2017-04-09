@@ -1,31 +1,28 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<div style="padding-top: 20px">
 {% for atm, details in atms.items %}
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          {{ atm }}
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-      <h5> Details : </h5>
-      <ul>
-        <li><b> Address: </b> {{ details.0 }}</li>
-        <li><b> Local Phone Number: </b> {{ details.1 }} </li>
-        <!-- <li><b> International Phone Number: </b>{{ details.2 }}</li>  -->    
-      </ul>
-      <div id="map" class="col-lg-6" style="vertical-align:middle; width:75%; float:none; display: inline-block;">      
+<div class="row">
+  <div class="col-xs-12">
+    <div class="thumbnail" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);transition: 0.3s; border-radius: 0">
+      <div id="map" style="width: 100%; ">      
       {% load easy_maps_tags %}
       <!-- map with 600x600 dimensions -->
-      {% easy_map details.0  600 300  using "easy_maps/map.html" %}  
+      {% easy_map details.0  100% 300  using "easy_maps/map.html" %}  
       </div>
-      </div>      
+      <div class="caption">
+        <h3 style="margin-top: 10px !important;">{{ atm }}</h3>
+        <p>
+          <h5> <span class="glyphicon glyphicon-map-marker" style="color: #b71c1c;" aria-hidden="true"></span>&nbsp;&nbsp;<span>{{ details.0 }}</span></h5>
+          {% if details.1 %}<h5><span class="glyphicon glyphicon-earphone
+" aria-hidden="true"></span>&nbsp;&nbsp;{{ details.1 }} </h5>{% endif %}
+        </p>
+        
+      </div>
     </div>
   </div>
+</div>
 {% endfor %}
+</div>
 {% endblock %}
