@@ -1,7 +1,7 @@
 from django.shortcuts import render, render_to_response, RequestContext
 from googleplaces import GooglePlaces, types, lang
 
-API_KEY = 'AIzaSyAi4SKFgjnR9uODbJI3s5Op2pF3HBRJKCU'
+API_KEY = ''
 
 google_places = GooglePlaces(API_KEY)
 
