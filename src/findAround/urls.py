@@ -1,33 +1,36 @@
 """findAround URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.8/topics/http/urls/
+    https://docs.djangoproject.com/en/2.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
 Class-based views
     1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
 Including another URLconf
-    1. Add an import:  from blog import urls as blog_urls
-    2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls import include, url, patterns
+
+
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-admin.autodiscover()
+from findAroundYou.views import search, atm_map
+from django.urls import path
 
-urlpatterns = patterns('',
-	url(r'^$', 'findAroundYou.views.search', name='search'),
-    url(r'^atm', 'findAroundYou.views.atm_map', name='atm_map'),
-    url(r'^admin/', include(admin.site.urls)),
-)
+
+urlpatterns = [
+    path('', search, name='search'),
+    path('atm_map', atm_map, name='atm_map'),
+    path('admin', admin.site.urls),
+]
 
 if settings.DEBUG:
-	urlpatterns += static(settings.STATIC_URL,
-		document_root = settings.STATIC_ROOT)
+    urlpatterns += static(settings.STATIC_URL,
+        document_root = settings.STATIC_ROOT)
 
-	urlpatterns += static(settings.MEDIA_URL,
-		document_root = settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+        document_root = settings.MEDIA_ROOT)

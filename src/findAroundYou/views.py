@@ -1,14 +1,15 @@
-from django.shortcuts import render, render_to_response, RequestContext
+from django.shortcuts import render
 from googleplaces import GooglePlaces, types, lang
+from keys_config import conf
 
-API_KEY = ''
 
+API_KEY = conf['gmaps_key']
 google_places = GooglePlaces(API_KEY)
 
-# Create your views here.
+
 def search(request):
-	return render_to_response("search.html", locals(), 
-		context_instance=RequestContext(request))
+	return render(request, "search.html", locals())
+
 
 def atm_map(request):
 	atms_name = []
@@ -23,10 +24,10 @@ def atm_map(request):
 		# print autocomplete
 
 	query_result = google_places.nearby_search(
-		location=loc, keyword='atm',
-		radius=200000)
+		location='Jaipur', keyword='atm',
+		radius=200)
 
 	for place in query_result.places:
 		place.get_details()
 		atms[place.name] = [place.formatted_address, place.local_phone_number, place.international_phone_number, place.website]
-	return render_to_response('atm_result.html', {'location':loc, 'atms':atms}, context_instance=RequestContext(request))
+	return render(request, 'atm_result.html', {'location':loc, 'atms':atms})
