@@ -1,4 +1,4 @@
-Django==2.2.9
+Django==2.2.13
 django-appconf==1.0.3
 django-classy-tags==1.0.0
 django-easy-maps==1.0.2
